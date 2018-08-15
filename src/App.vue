@@ -22,4 +22,10 @@
     }
   }
 }
+.ivu-icon {
+  font-size: 1.2rem;
+}
+.ivu-table-tip table {
+  width: auto !important;
+}
 </style>

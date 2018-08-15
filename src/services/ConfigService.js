@@ -15,17 +15,5 @@ export default {
   },
   getYAML(params) {
     return Api().get("getYAML", { params: params });
-  },
-  getMpLogList(params) {
-    return Api().get("getMpLogList", { params: params });
-  },
-  viewMpLog(params) {
-    return Api().get("viewMpLog", { params: params });
-  },
-  deleteMpLog(params) {
-    return Api().get("deleteMpLog", { params: params });
-  },
-  downloadMpLog(params) {
-    return Api().get("downloadMpLog", { params: params });
   }
 };

@@ -34,11 +34,12 @@ export default {
   },
   watch: {
     $route: function(val) {
-      this.activeName = val.name;
+      console.log(val);
+      this.activeName = val.meta.activeName;
     }
   },
-  mounted(){
-      this.activeName = this.$route.name;
+  mounted() {
+    this.activeName = this.$route.meta.activeName;
   }
 };
 </script>

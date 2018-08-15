@@ -1,11 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
-
+import store from "../store/store";
 Vue.use(Router);
-
 export default new Router({
+  // mode: "history",
   mode: "history",
-  base: process.env.BASE_URL,
+  // base: process.env.BASE_URL,
+  base: "/mapproxyView",
   routes: [
     {
       path: "/",
@@ -16,17 +17,53 @@ export default new Router({
         {
           path: "nodes",
           name: "nodes",
-          component: () => import("@/views/serviceNodes/ServiceNodes.vue")
+          meta: { activeName: "nodes" },
+          component: () => import("@/views/serviceNodes/ServiceNodes.vue"),
+          beforeEnter: (to, from, next) => {
+            if (store.state.user) {
+              next();
+            } else {
+              next({ name: "login" });
+            }
+          }
         },
         {
           path: "logs",
           name: "logs",
-          component: () => import("@/views/runLogs/RunLogs.vue")
+          meta: { activeName: "logs" },
+          component: () => import("@/views/runLogs/RunLogs.vue"),
+          beforeEnter: (to, from, next) => {
+            if (store.state.user) {
+              next();
+            } else {
+              next({ name: "login" });
+            }
+          }
         },
         {
           path: "configs",
           name: "configs",
-          component: () => import("@/views/configFiles/ConfigFiles.vue")
+          meta: { activeName: "configs" },
+          component: {
+            render(h) {
+              return <router-view />;
+            }
+          },
+          beforeEnter: (to, from, next) => {
+            if (store.state.user) {
+              next();
+            } else {
+              next({ name: "login" });
+            }
+          },
+          children: [
+            {
+              path: "",
+              name: "configs",
+              meta: { activeName: "configs" },
+              component: () => import("@/views/configFiles/ConfigFiles.vue")
+            }
+          ]
         }
       ]
     },
