@@ -1,8 +1,7 @@
 <template>
-  <div class="container" @keyup.enter="submitForm('loginForm')">
+  <div class="container" @keyup.enter="submitForm('loginForm')" style="height:100vh">
     <Row type="flex" justify="center" class="banner">
       <div>
-        <h3>地图集群服务系统</h3>
       </div>
     </Row>
     <Row class="row-bg" type="flex" justify="center" align="middle">
@@ -29,12 +28,16 @@
         </Row>
       </Form>
     </Row>
+    <div class="footer_bar">
+      <p>建议使用IE10或以上，谷歌、火狐浏览器</p>
+      <p>Copyright© 2015-2018</p>
+    </div>
   </div>
 </template>
 <script>
 import AuthenticationService from "../../services/AuthenticationService.js";
 export default {
-  name: "",
+  name: "Login",
   data() {
     return {
       loginForm: {
@@ -63,8 +66,8 @@ export default {
           )).data;
           this.$store;
           if (loginResult.code === "1") {
-            this.$router.push({ name: "nodes" });
             this.$store.dispatch("setUser", this.loginForm.userName);
+            this.$router.push({ name: "nodes" });
           } else if (loginResult.code === "0") {
             this.$Notice.error({
               title: "错误",
@@ -88,7 +91,7 @@ export default {
 }
 .banner {
   height: 320px;
-  background-image: url("../../assets/login_bg.png");
+  background-image: url("../../assets/login_bg.jpg");
   width: 100%;
   min-width: 1000px;
   z-index: -10;
@@ -109,5 +112,25 @@ export default {
     text-shadow: #333 0.1em 0.1em 0.2em;
     letter-spacing: 2px;
   }
+}
+.footer_bar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 8vh;
+  background-color: #121a25;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer_bar p {
+  color: #9a9a9a;
+  font-size: 8px;
+  margin: 2px;
 }
 </style>

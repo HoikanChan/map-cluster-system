@@ -1,16 +1,34 @@
-import Api from "@/services/Api";
+import RestApi from "@/services/RestApi";
+import axios from "axios";
+import {host} from "./hostconfig";
 
 export default {
   getMpLogList(params) {
-    return Api().get("getMpLogList", { params: params });
+    return RestApi().get("getMpLogList", { params: params });
   },
   viewMpLog(params) {
-    return Api().get("viewMpLog", { params: params });
+    return RestApi().get("viewMpLog", { params: params });
   },
   deleteMpLog(params) {
-    return Api().post("deleteMpLog", params);
+    return axios({
+      url: host + "deleteMpLog",
+      data: params,
+      method: "post",
+      transformRequest: [
+        function(data) {
+          var ret = "";
+          for (let i in data) {
+            ret += encodeURIComponent(i) + "=" + encodeURI(data[i]) + "&";
+          }
+          return ret;
+        }
+      ],
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    });
   },
   downloadMpLog(params) {
-    return Api().get("downloadMpLog", { params: params });
+    return RestApi().get("downloadMpLog", { params: params });
   }
 };

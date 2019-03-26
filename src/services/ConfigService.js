@@ -1,19 +1,19 @@
-import Api from "@/services/Api";
+import RestApi from "@/services/RestApi";
 
 export default {
   // sortOrder	True	String
   // pageSize	True	Int
   // pageNumber	True	Int
   getNodeList(params) {
-    return Api().get("getMpNodeList", { params: params });
+    return RestApi().get("getMpNodeList", { params: params });
   },
   //   nodeId	int
   // pageSize	Int
   // pageNum	Int
   getYamlList(params) {
-    return Api().get("getYamlList", { params: params });
+    return RestApi().get("getYamlList", { params: params });
   },
   getYAML(params) {
-    return Api().get("getYAML", { params: params });
+    return RestApi().get("getYAML", { params: params });
   }
 };

@@ -1,3 +1,7 @@
-// const host = "http://192.168.15.65:8099/rest/restForOutside/";
-const host = "http://124.200.40.5:8004/rest/restForOutside/";
+const baseHost = 'http://192.168.15.158:8099/';
+const host = "http://192.168.15.158:8099/";
+// 天津环境
+// const host = "http://192.168.15.158:8099/rest/restForOutside/";
+// 饶河环境
+// const host = "http://192.168.15.158:8099/";
 export default host;

@@ -72,7 +72,7 @@ export default {
               e.stopPropagation();
 
               window.open(
-                `http://124.200.40.5:9292/map/${params.row.fileName.slice(
+                `http://218.10.105.196:9005/map/${params.row.fileName.slice(
                   0,
                   -5
                 )}/demo/`
@@ -136,7 +136,7 @@ export default {
 
       this.loading = false;
       this.data = result.list.length ? result.list : [];
-      this.count = result.total;
+      this.count = result.total ? Number(result.total) : 0;
     },
     async clickTableRow(data) {
       this.spinShow = true;

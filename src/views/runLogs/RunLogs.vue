@@ -71,7 +71,7 @@ import host from "../../services/hostconfig";
 export default {
   data() {
     return {
-      count: "",
+      count: 0,
       nodes: [],
       pickedNodeId: null,
       loading: false,
@@ -197,7 +197,7 @@ export default {
 
       this.loading = false;
       this.data = result.list.length ? result.list : [];
-      this.count = result.total;
+      this.count = result.total ? Number(result.total) : 0;
     },
     async deleteFile(event, row) {
       event.stopPropagation();

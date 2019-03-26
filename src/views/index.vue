@@ -3,10 +3,18 @@
     <Layout class="container">
       <Header class="header">
         <title style="color:white">地图集群服务系统</title>
-        <div>
-          <Icon type="ios-contact" />
-          <span>{{username}}</span>
-        </div>
+        <Dropdown @on-click="logout">
+          <a href="javascript:void(0)" style="color:#fff">
+            <Icon type="ios-contact" />
+            <span>{{username}}</span>
+            <Icon type="ios-arrow-down"></Icon>
+          </a>
+          <DropdownMenu slot="list">
+            <DropdownItem>
+              登出
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </Header>
       <Layout class="main">
         <Navbar/>
@@ -18,15 +26,25 @@
   </div>
 </template>
 <script>
+import AuthenticationService from "../services/AuthenticationService.js";
 import Navbar from "./Navbar.vue";
 export default {
+  name: "app",
   components: {
     Navbar
   },
   computed: {
     username: function() {
-      console.log(this.$store);
       return this.$store.state.user;
+    }
+  },
+  methods: {
+    logout() {
+      console.log("logout");
+      // AuthenticationService.logout();
+      window.location = "http://192.168.15.158:8099/mapproxy/sooLogin/logout";
+      this.$router.push({ name: "index" });
+      this.$store.dispatch("setUser", null);
     }
   }
 };

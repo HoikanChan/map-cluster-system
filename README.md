@@ -1,21 +1,21 @@
-# map-cluster-system
+# map-cluster-system 项目启动
 
-## Project setup
+## 安装库
 ```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn run serve
+npm install
 ```
 
-### Compiles and minifies for production
+### 运行
 ```
-yarn run build
+npm run serve
 ```
 
-### Lints and fixes files
+### 打包
 ```
-yarn run lint
+npm run build
+```
+
+### 格式化所有代码
+```
+npm run lint
 ```

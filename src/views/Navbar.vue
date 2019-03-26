@@ -34,7 +34,6 @@ export default {
   },
   watch: {
     $route: function(val) {
-      console.log(val);
       this.activeName = val.meta.activeName;
     }
   },
